@@ -1,5 +1,4 @@
-%Εισαγωγή των αξιολογήσεων σε μητρώο. Γραμμές: Χρήστης, Στήλες: Ταινία.
-%Γίνεται import των στηλών 1,2,3 από το αρχείο u.data στο μητρώο data.
+%Review insertion in a matrix. Rows: User, Columns: Movie. Columns 1,2,3 are imported from the file u.data into the matrix data.
 a = max(data(:,1));
 b = max(data(:,2));
 U = zeros(a,b);
@@ -7,14 +6,14 @@ for i = 1:size(data,1)
     U(data(i,1),data(i,2)) = data(i,3);
 end
 
-%Χωρισμός των αξιολογήσεων ανά χρήστη.
+%Review separation by user.
 I = eye(a);
 
-%Αποθήκευση σε αρχείο.
+%Saving to file.
 writematrix(I,'Input.csv');
 writematrix(U,'Output.csv');
 
-%Κεντράρισμα των δεδομένων.
+%Data centering.
 [m,n] = size(U);
 A = zeros(m,n);
 for i = 1:m
@@ -36,7 +35,7 @@ for i = 1:m
 end
 writematrix(A,'Output(centered).csv');
 
-%Συμπλήρωση ελλιπών τιμών με τυχαία τιμή.
+%Filling out missing values with random ones.
 [m,n] = size(U);
 B = zeros(m,n);
 for i = 1:m
@@ -50,7 +49,7 @@ for i = 1:m
 end
 writematrix(B,'Output(completed-random).csv');
 
-%Κεντράρισμα.
+%Centering.
 D = zeros(m,n);
 for i = 1:m
     count = 0;
@@ -71,7 +70,7 @@ for i = 1:m
 end
 writematrix(D,'Output(completed-random-centered).csv');
 
-%Συμπλήρωση ελλιπών τιμών με τη μέση τιμή του διανύσματος αξιολόγησης.
+%Filling out missing values with the average of the review vector.
 C = zeros(m,n);
 for i = 1:m
     count = 0;
@@ -94,7 +93,7 @@ for i = 1:m
 end
 writematrix(C,'Output(completed-mo).csv');
 
-%Κεντράρισμα.
+%Centering.
 E = zeros(m,n);
 for i = 1:m
     count = 0;
